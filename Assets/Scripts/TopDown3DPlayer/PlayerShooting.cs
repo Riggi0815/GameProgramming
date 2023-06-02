@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +7,6 @@ public class PlayerShooting : MonoBehaviour
 
     [SerializeField] private float _damage = 10f;
     [SerializeField] private float _range = 100f;
-
     
     public void OnShoot(InputAction.CallbackContext context)
     {

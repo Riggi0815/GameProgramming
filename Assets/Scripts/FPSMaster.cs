@@ -29,7 +29,7 @@ public partial class @FPSMaster: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Look"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""943668ec-9050-4b65-8575-8ad71ac0a0f4"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",

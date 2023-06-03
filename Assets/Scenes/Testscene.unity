@@ -573,14 +573,26 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1722383331}
+        m_TargetAssemblyTypeName: MouseLook, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 943668ec-9050-4b65-8575-8ad71ac0a0f4
     m_ActionName: Player/Look[/Mouse/delta]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 1722383333}
+  m_Camera: {fileID: 0}
 --- !u!114 &1722383331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,7 +605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2e586d06dd01745989ee934ca8bba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivityX: 50
+  mouseSensitivityY: 10
   playerBody: {fileID: 384563943}
 --- !u!81 &1722383332
 AudioListener:

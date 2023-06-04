@@ -12,7 +12,7 @@ public class PlayerShootingFPS : MonoBehaviour
     [SerializeField] private bool _isAutomatic;
     [SerializeField] private int _magSize;
     [SerializeField] private float _reloadTime;
-    private int ammoLeft;
+    [SerializeField] private int ammoLeft;
 
     private bool isShooting, readyToShoot, reloading;
 

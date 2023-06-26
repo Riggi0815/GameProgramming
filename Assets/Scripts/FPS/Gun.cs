@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerShootingFPS : MonoBehaviour
+public class Gun : MonoBehaviour
 {
 
     [SerializeField] private float _damage;

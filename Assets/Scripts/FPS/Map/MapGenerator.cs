@@ -7,7 +7,8 @@ public class MapGenerator : MonoBehaviour {
 
     public enum DrawMode {
         NoiseMap,
-        ColorMap
+        ColorMap,
+        Mesh
     }
 
     [SerializeField] private DrawMode drawMode;
@@ -24,7 +25,10 @@ public class MapGenerator : MonoBehaviour {
     [SerializeField] private float lacunarity;
 
     [SerializeField] private int seed;
-    [SerializeField] private Vector2 offset;  
+    [SerializeField] private Vector2 offset;
+
+    [SerializeField] private float meshHeightMultiplier;
+    [SerializeField] private AnimationCurve meshHeightCurve;
 
     public bool autoUpdate;
 
@@ -53,6 +57,10 @@ public class MapGenerator : MonoBehaviour {
         }
         else if (drawMode == DrawMode.ColorMap) {
             display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeigth));
+        }
+        else if (drawMode == DrawMode.Mesh) {
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve),
+                TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeigth));
         }
         
     }

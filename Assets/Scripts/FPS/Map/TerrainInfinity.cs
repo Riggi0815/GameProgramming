@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class TerrainInfinity : MonoBehaviour {
+	
+	private const float scale = 1.8f;
+	
 	private const float viewerChunkUpdateNum = 25f;
 	private const float sqrViewerChunkUpdateNum = viewerChunkUpdateNum * viewerChunkUpdateNum;
 	
@@ -19,7 +22,7 @@ public class TerrainInfinity : MonoBehaviour {
 	int chunksViewDst;
 
 	Dictionary<Vector2, TerrainChunk> terrainChunkDictionary = new Dictionary<Vector2, TerrainChunk>();
-	List<TerrainChunk> terrainChunksVisibleLastUpdate = new List<TerrainChunk>();
+	static List<TerrainChunk> terrainChunksVisibleLastUpdate = new List<TerrainChunk>();
 
 	void Start() {
 		mapGen = FindObjectOfType<MapGenerator>();
@@ -32,7 +35,7 @@ public class TerrainInfinity : MonoBehaviour {
 	}
 
 	void Update() {
-		playerPos = new Vector2 (player.position.x, player.position.z);
+		playerPos = new Vector2 (player.position.x, player.position.z) / scale;
 
 		if ((playerPosOld - playerPos).sqrMagnitude > sqrViewerChunkUpdateNum) {
 			playerPosOld = playerPos;
@@ -55,10 +58,7 @@ public class TerrainInfinity : MonoBehaviour {
 				Vector2 viewedChunkCoord = new Vector2 (currentChunkCoordX + xOffset, currentChunkCoordY + yOffset);
 
 				if (terrainChunkDictionary.ContainsKey (viewedChunkCoord)) {
-					terrainChunkDictionary [viewedChunkCoord].UpdateTerrainChunk ();
-					if (terrainChunkDictionary [viewedChunkCoord].IsVisible ()) {
-						terrainChunksVisibleLastUpdate.Add (terrainChunkDictionary [viewedChunkCoord]);
-					}
+					terrainChunkDictionary[viewedChunkCoord].UpdateTerrainChunk();
 				} else {
 					terrainChunkDictionary.Add (viewedChunkCoord, new TerrainChunk (viewedChunkCoord, chunkSize, detailLevel, transform, mapMat));
 				}
@@ -95,8 +95,10 @@ public class TerrainInfinity : MonoBehaviour {
 			meshFilter = meshObject.AddComponent<MeshFilter>();
 			meshRenderer.material = mat; 
 			meshObject.layer = LayerMask.NameToLayer("Ground");
-			meshObject.transform.position = positionV3;
+			
+			meshObject.transform.position = positionV3 * scale;
 			meshObject.transform.parent = parent;
+			meshObject.transform.localScale = Vector3.one * scale; 
 			SetVisible(false);
 
 			lodMeshes = new LODMesh[detailLevel.Length];
@@ -141,6 +143,7 @@ public class TerrainInfinity : MonoBehaviour {
 							lodMesh.RequestMesh(mapData);
 						}
 					}
+					terrainChunksVisibleLastUpdate.Add(this);
 				}
 				SetVisible (visible);
 			}

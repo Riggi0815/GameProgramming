@@ -13,7 +13,7 @@ public static class Noise {
         Vector2[] octavesOffsets = new Vector2[octaves];
         for (int i = 0; i < octaves; i++) {
             float offsetX = numberGen.Next(-100000, 100000) + offset.x;
-            float offsetY = numberGen.Next(-100000, 100000) +  offset.y;
+            float offsetY = numberGen.Next(-100000, 100000) -  offset.y;
             octavesOffsets[i] = new Vector2(offsetX, offsetY);
         }
 
@@ -36,8 +36,8 @@ public static class Noise {
                 float noiseHeight = 0;
 
                 for (int i = 0; i < octaves; i++) {
-                    float sampleX = (x - halfWidth) / scale * frequency + octavesOffsets[i].x;
-                    float sampleY = (y - halfHeight) / scale * frequency + octavesOffsets[i].y;
+                    float sampleX = (x - halfWidth) / scale * frequency + octavesOffsets[i].x * frequency;
+                    float sampleY = (y - halfHeight) / scale * frequency + octavesOffsets[i].y * frequency;
 
                     float perlinValue = Mathf.PerlinNoise(sampleX, sampleY) * 2 - 1;
                     noiseHeight += perlinValue * amplitude;

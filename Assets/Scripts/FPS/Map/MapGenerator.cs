@@ -28,8 +28,8 @@ public class MapGenerator : MonoBehaviour {
     [SerializeField] private Vector2 offset;
 
     [SerializeField] private float meshHeightMultiplier;
-    [SerializeField] private AnimationCurve meshHeightCurve;
-
+    [SerializeField] private AnimationCurve meshHeightCurve; 
+    
     public bool autoUpdate;
 
     [SerializeField] private TerrainType[] regions;

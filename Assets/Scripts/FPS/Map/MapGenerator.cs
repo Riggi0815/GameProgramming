@@ -32,7 +32,7 @@ public class MapGenerator : MonoBehaviour {
     public int seed;
     [SerializeField] private Vector2 offset;
 
-    [SerializeField] private bool useFalloff;
+    public bool useFalloff;
 
     [SerializeField] private float meshHeightMultiplier;
     [SerializeField] private AnimationCurve meshHeightCurve;

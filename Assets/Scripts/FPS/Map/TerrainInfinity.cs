@@ -29,6 +29,12 @@ public class TerrainInfinity : MonoBehaviour {
 
 		mapGen.seed = (int)Random.Range(1.0f, 100000.0f);
 
+		if (mapGen.useFalloff) {
+
+			detailLevel = new LODInfo[1];
+
+		}
+
 		maxViewDst = detailLevel[detailLevel.Length - 1].visibleDistThresh;
 		chunkSize = MapGenerator.mapChunkSize - 1;
 		chunksViewDst = Mathf.RoundToInt(maxViewDst / chunkSize);

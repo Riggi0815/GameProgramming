@@ -29,7 +29,7 @@ public class MapGenerator : MonoBehaviour {
     [SerializeField] private float persistance;
     [SerializeField] private float lacunarity;
 
-    [SerializeField] private int seed;
+    public int seed;
     [SerializeField] private Vector2 offset;
 
     [SerializeField] private bool useFalloff;

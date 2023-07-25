@@ -42,6 +42,7 @@ public class MapGenerator : MonoBehaviour {
     [SerializeField] private TerrainType[] regions;
 
     private float[,] falloffMap;
+    
 
     private void Start() {
         seed = Random.Range(1, 100000);
@@ -51,9 +52,8 @@ public class MapGenerator : MonoBehaviour {
         MapData mapData = GenerateMapData(Vector2.zero);
         
         MapDisplay display = FindObjectOfType<MapDisplay>();
-        
+
         display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPrevLOD), TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
-        
     }
 
     public void DrawMapEditor() {

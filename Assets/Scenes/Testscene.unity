@@ -509,8 +509,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 384563944}
-  _speed: 200
-  _gravity: 0
+  _speed: 12
+  _gravity: -19.62
   _jumpHeight: 3
   _groundCheck: {fileID: 702553758}
   _groundDistance: 0.4
@@ -918,6 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0863795b246e14a835ecb029a13ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 1917680320}
   textureRenderer: {fileID: 1863203855}
   meshFilter: {fileID: 1917680322}
   meshRenderer: {fileID: 1917680321}
@@ -1195,7 +1196,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1669532314
 MonoBehaviour:
@@ -1565,7 +1566,7 @@ GameObject:
   - component: {fileID: 1917680323}
   - component: {fileID: 1917680322}
   - component: {fileID: 1917680321}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

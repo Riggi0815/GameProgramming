@@ -3,13 +3,13 @@ using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MapGenerator : MonoBehaviour {
 
     public enum DrawMode {
         NoiseMap,
         ColorMap,
-        Mesh,
         FalloffMap
     }
     [SerializeField] private DrawMode drawMode;
@@ -43,16 +43,22 @@ public class MapGenerator : MonoBehaviour {
 
     private float[,] falloffMap;
 
-    Queue<MapThreadInfo<MapData>> mapDataThreadQueue = new Queue<MapThreadInfo<MapData>>();
-    Queue<MapThreadInfo<MeshData>> meshDataThreadQueue = new Queue<MapThreadInfo<MeshData>>();
-
     private void Start() {
+        seed = Random.Range(1, 100000);
+        
         falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize);
+        
+        MapData mapData = GenerateMapData(Vector2.zero);
+        
+        MapDisplay display = FindObjectOfType<MapDisplay>();
+        
+        display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPrevLOD), TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
+        
     }
 
     public void DrawMapEditor() {
-        MapData mapData = GenerateMapData(Vector2.zero);
         
+        MapData mapData = GenerateMapData(Vector2.zero);
         MapDisplay display = FindObjectOfType<MapDisplay>();
         if (drawMode == DrawMode.NoiseMap) {
             display.DrawTexture(TextureGenerator.TextureFromHeightMap(mapData.heightMap));
@@ -60,57 +66,8 @@ public class MapGenerator : MonoBehaviour {
         else if (drawMode == DrawMode.ColorMap) {
             display.DrawTexture(TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
         }
-        else if (drawMode == DrawMode.Mesh) {
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPrevLOD), TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
-        }
         else if (drawMode == DrawMode.FalloffMap) {
             display.DrawTexture(TextureGenerator.TextureFromHeightMap(FalloffGenerator.GenerateFalloffMap(mapChunkSize)));
-        }
-    }
-
-    public void RequestMapData(Vector2 center, Action<MapData> callback) {
-        ThreadStart threadStart = delegate {
-            MapDataThread(center, callback);
-        };
-        
-        new Thread(threadStart).Start();
-    }
-
-    void MapDataThread(Vector2 center, Action<MapData> callback) {
-        MapData mapData = GenerateMapData(center);
-        lock (mapDataThreadQueue) {
-            mapDataThreadQueue.Enqueue(new MapThreadInfo<MapData>(callback, mapData));
-        }
-    }
-    
-    public void RequestMeshData(MapData mapData, int lod, Action<MeshData> callback) {
-        ThreadStart threadStart = delegate {
-            MeshDataThread(mapData, lod, callback);
-        };
-        
-        new Thread(threadStart).Start();
-    }
-
-    void MeshDataThread(MapData mapData, int lod, Action<MeshData> callback) {
-        MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, lod);
-        lock (meshDataThreadQueue) {
-            meshDataThreadQueue.Enqueue(new MapThreadInfo<MeshData>(callback, meshData));
-        }
-    }
-
-    void Update() {
-        if (mapDataThreadQueue.Count > 0) {
-            for (int i = 0; i < mapDataThreadQueue.Count; i++) {
-                MapThreadInfo<MapData> threadInfo = mapDataThreadQueue.Dequeue();
-                threadInfo.callback(threadInfo.param);
-            }
-        }
-
-        if (meshDataThreadQueue.Count > 0) {
-            for (int i = 0; i < meshDataThreadQueue.Count; i++) {
-                MapThreadInfo<MeshData> threadInfo = meshDataThreadQueue.Dequeue();
-                threadInfo.callback(threadInfo.param);
-            }
         }
     }
 
@@ -155,16 +112,6 @@ public class MapGenerator : MonoBehaviour {
         falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize);
     }
 
-    struct MapThreadInfo<T> {
-        public readonly Action<T> callback;
-        public readonly T param;
-
-        public MapThreadInfo(Action<T> callback, T param) {
-            this.callback = callback;
-            this.param = param;
-        }
-    }
-    
 }
 
 [System.Serializable]

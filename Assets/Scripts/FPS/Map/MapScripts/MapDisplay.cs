@@ -7,7 +7,6 @@ public class MapDisplay : MonoBehaviour {
     [SerializeField] private GameObject mesh;
     [SerializeField] private Renderer textureRenderer;
     [SerializeField] private MeshFilter meshFilter;
-    [SerializeField] private MeshRenderer meshRenderer;
     private MeshCollider meshCollider;
 
     //DrawNoise Map
@@ -16,10 +15,11 @@ public class MapDisplay : MonoBehaviour {
         textureRenderer.transform.localScale = new Vector3(texture.width, 1, texture.height);
     }
 
-    public void DrawMesh(MeshData meshData, Texture2D texture) {
+    public void DrawMesh(MeshData meshData) {
         meshFilter.sharedMesh = meshData.CreateMesh();
-        meshRenderer.sharedMaterial.mainTexture = texture;
         meshCollider = mesh.AddComponent<MeshCollider>();
+        
+        meshFilter.transform.localScale = Vector3.one * FindObjectOfType<MapGenerator>().terrainData.uniformScale;
     }
 
 }

@@ -17,7 +17,10 @@ public class MapGenerator : MonoBehaviour {
     public Noise.NormalizeMode normalizeMode;
 
     //Variables for Size
-    public const int mapChunkSize = 241;
+    public const int mapChunkSize = 95;
+
+    public bool useFlatShading;
+    
     [Range(0,6)]
     [SerializeField] private int editorPrevLOD;
     [SerializeField] private float noiseScale;
@@ -53,7 +56,7 @@ public class MapGenerator : MonoBehaviour {
         
         MapDisplay display = FindObjectOfType<MapDisplay>();
 
-        display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPrevLOD), TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
+        display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPrevLOD, useFlatShading), TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
     }
 
     public void DrawMapEditor() {

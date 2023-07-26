@@ -489,13 +489,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.8
+  m_Height: 3
   m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.7
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.36, z: 0}
 --- !u!114 &384563945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,7 +516,7 @@ MonoBehaviour:
   _groundDistance: 0.4
   _groundMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 64
 --- !u!4 &644045027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6874680185729694597, guid: aba48d48da0b63d408f74808dc11cc19, type: 3}
@@ -936,6 +936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawMode: 1
   normalizeMode: 0
+  useFlatShading: 1
   editorPrevLOD: 0
   noiseScale: 50
   octaves: 5
@@ -1549,7 +1550,7 @@ Transform:
   m_GameObject: {fileID: 1863203853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 241, y: 1, z: 241}
+  m_LocalScale: {x: 95, y: 1, z: 95}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

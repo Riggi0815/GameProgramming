@@ -921,7 +921,6 @@ MonoBehaviour:
   mesh: {fileID: 1917680320}
   textureRenderer: {fileID: 1863203855}
   meshFilter: {fileID: 1917680322}
-  meshRenderer: {fileID: 1917680321}
 --- !u!114 &1586638249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,76 +934,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawMode: 1
-  normalizeMode: 0
-  useFlatShading: 1
+  terrainData: {fileID: 11400000, guid: 69db08460c30ce74bb6a844b08f9655c, type: 2}
+  noiseData: {fileID: 11400000, guid: 69834592034765a46a3ebd818245548a, type: 2}
   editorPrevLOD: 0
-  noiseScale: 50
-  octaves: 5
-  persistance: 0.5
-  lacunarity: 2
-  seed: 0
-  offset: {x: 0, y: 0}
-  useFalloff: 1
-  meshHeightMultiplier: 13
-  meshHeightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: -0.3
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.4
-      value: -0.1
-      inSlope: 0.037737522
-      outSlope: 0.037737522
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.16309813
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   autoUpdate: 1
-  regions:
-  - name: WaterDeep
-    height: 0
-    color: {r: 0.014951949, g: 0.06675575, b: 0.4528302, a: 0}
-  - name: Water
-    height: 0.4
-    color: {r: 0, g: 0.09863605, b: 0.8301887, a: 0}
-  - name: Sand
-    height: 0.5
-    color: {r: 0.9528302, g: 0.89665085, b: 0.4539427, a: 0}
-  - name: GrassFlat
-    height: 0.6
-    color: {r: 0.2846996, g: 0.6698113, b: 0.2432805, a: 0}
-  - name: GrassHill
-    height: 0.7
-    color: {r: 0.045698527, g: 0.4528302, b: 0, a: 0}
-  - name: Rock
-    height: 0.8
-    color: {r: 0.3773585, g: 0.340429, b: 0.30437878, a: 0}
-  - name: StepRock
-    height: 0.9
-    color: {r: 0.3018868, g: 0.27839088, b: 0.25489497, a: 0}
-  - name: Snow
-    height: 1
-    color: {r: 1, g: 1, b: 1, a: 0}
+  a: 2.98
+  b: 6
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.2028302, g: 0.72737706, b: 1, a: 1}
+    key1: {r: 0.92883897, g: 0.9528302, b: 0.4539427, a: 1}
+    key2: {r: 0.39711642, g: 0.8679245, b: 0.48727122, a: 0}
+    key3: {r: 0.26633143, g: 0.5943396, b: 0.3441639, a: 0}
+    key4: {r: 0.26633143, g: 0.5943396, b: 0.3441639, a: 0}
+    key5: {r: 1, g: 1, b: 1, a: 0}
+    key6: {r: 1, g: 1, b: 1, a: 0}
+    key7: {r: 1, g: 1, b: 1, a: 0}
+    ctime0: 0
+    ctime1: 1542
+    ctime2: 9445
+    ctime3: 20624
+    ctime4: 29298
+    ctime5: 65535
+    ctime6: 65535
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
 --- !u!4 &1586638250
 Transform:
   m_ObjectHideFlags: 0
@@ -1633,7 +1597,7 @@ Transform:
   m_GameObject: {fileID: 1917680320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

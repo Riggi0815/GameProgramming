@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class FalloffGenerator
 {
 
-    public static float[,] GenerateFalloffMap(int size) {
+    public static float[,] GenerateFalloffMap(int size, float a, float b) {
         float[,] map = new float[size, size];
 
         for (int i = 0; i < size; i++) {
@@ -15,7 +16,7 @@ public static class FalloffGenerator
                 float y = j / (float)size * 2 - 1;
 
                 float value = Mathf.Max(Mathf.Abs(x), Mathf.Abs(y));
-                map[i, j] = Evaluate(value);
+                map[i, j] = Evaluate(value, a, b);
                 
 
             }
@@ -24,9 +25,7 @@ public static class FalloffGenerator
         return map;
     }
 
-    static float Evaluate(float value) {
-        float a = 3;
-        float b = 2.2f;
+    static float Evaluate(float value, float a, float b) {
 
         return Mathf.Pow(value, a) / (Mathf.Pow(value, a) + Mathf.Pow(b - b * value, a));
     }

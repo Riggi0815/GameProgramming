@@ -33,7 +33,6 @@ public static class MeshGenerator {
                     meshData.uvs[vertexIndex] = new Vector2(x / (float)width, y / (float)height);
 
                     float heightY = Mathf.InverseLerp(minHeight, maxHeight, meshData.vertices[vertexIndex].y);
-                    Debug.Log(heightY);
                     meshData.colors[vertexIndex] = gradient.Evaluate(heightY);
 
                 if (x < width - 1 && y < height -1) {

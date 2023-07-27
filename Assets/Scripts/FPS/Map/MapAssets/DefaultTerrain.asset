@@ -12,13 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e28721fb66ffb4eb1dd9317fd967ac, type: 3}
   m_Name: DefaultTerrain
   m_EditorClassIdentifier: 
+  autoUpdate: 1
   uniformScale: 2.5
-  useFlatShading: 0
-  useFalloff: 0
-  meshHeightMultiplier: 0
+  useFlatShading: 1
+  useFalloff: 1
+  meshHeightMultiplier: 10
   meshHeightCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4
+      value: 0
+      inSlope: 0.037587494
+      outSlope: 0.037587494
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.1307687
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

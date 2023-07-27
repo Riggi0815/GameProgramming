@@ -25,6 +25,8 @@ public class MapGenerator : MonoBehaviour {
     public bool autoUpdate;
 
     private float[,] falloffMap;
+    public float a;
+    public float b;
 
     public Gradient gradient;
 
@@ -41,7 +43,7 @@ public class MapGenerator : MonoBehaviour {
         noiseData.seed = Random.Range(1, 100000);
         noiseData.offset = new Vector2(Random.Range(0, 100), Random.Range(0, 100));
         
-        falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize);
+        falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize, a, b);
         
         MapData mapData = GenerateMapData(Vector2.zero);
         
@@ -58,7 +60,7 @@ public class MapGenerator : MonoBehaviour {
             display.DrawTexture(TextureGenerator.TextureFromHeightMap(mapData.heightMap));
         }
         else if (drawMode == DrawMode.FalloffMap) {
-            display.DrawTexture(TextureGenerator.TextureFromHeightMap(FalloffGenerator.GenerateFalloffMap(mapChunkSize)));
+            display.DrawTexture(TextureGenerator.TextureFromHeightMap(FalloffGenerator.GenerateFalloffMap(mapChunkSize, a, b)));
         }
     }
 
@@ -89,7 +91,7 @@ public class MapGenerator : MonoBehaviour {
             noiseData.OnValuesUpdated += OnValuesUpdated;
         }
 
-        falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize);
+        falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize, a, b);
     }
 
 }

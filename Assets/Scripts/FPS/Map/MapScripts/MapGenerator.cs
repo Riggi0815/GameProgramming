@@ -26,6 +26,7 @@ public class MapGenerator : MonoBehaviour {
 
     private float[,] falloffMap;
 
+    public Gradient gradient;
 
     void OnValuesUpdated() {
         if (!Application.isPlaying) {
@@ -34,6 +35,9 @@ public class MapGenerator : MonoBehaviour {
     }
 
     private void Start() {
+        float minHeight = terrainData.minHeight;
+        float maxHeight = terrainData.maxHeight;
+        
         noiseData.seed = Random.Range(1, 100000);
         noiseData.offset = new Vector2(Random.Range(0, 100), Random.Range(0, 100));
         
@@ -43,7 +47,7 @@ public class MapGenerator : MonoBehaviour {
         
         MapDisplay display = FindObjectOfType<MapDisplay>();
 
-        display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve, editorPrevLOD, terrainData.useFlatShading));
+        display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve, editorPrevLOD, terrainData.useFlatShading, gradient, minHeight, maxHeight));
     }
 
     public void DrawMapEditor() {

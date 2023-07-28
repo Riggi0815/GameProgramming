@@ -8,10 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController _controller;
     
     [SerializeField] private float _speed;
-    [SerializeField] private float _gravity;
+    public float _gravity;
     [SerializeField] private float _jumpHeight;
 
-    private Vector3 _velocity;
+    public Vector3 _velocity;
     private Vector2 _move;
     private bool isGrounded, isJumping;
 

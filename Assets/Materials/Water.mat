@@ -69,7 +69,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseScale: 5
+    - _NoiseScale: 10
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RippleDens: 120
@@ -79,7 +79,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaveSpeed: 0.1
+    - _WaveSpeed: 0.03
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.14208788, g: 0.54004604, b: 0.9716981, a: 0}

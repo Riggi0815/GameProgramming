@@ -2,17 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Gun : MonoBehaviour
-{
+public class Gun : MonoBehaviour {
 
-    [SerializeField] private float _damage;
-    [SerializeField] private float _range;
-    [SerializeField] private float _fireRate;
-    [SerializeField] private float _impactForce;
-    [SerializeField] private bool _isAutomatic;
-    [SerializeField] private int _magSize;
-    [SerializeField] private float _reloadTime;
-    [SerializeField] private int ammoLeft;
+    [SerializeField] private GunData _gunData;
+    [SerializeField] private GameObject gun1;
+    [SerializeField] private GameObject gun2;
 
     private bool isShooting, readyToShoot, reloading;
 
@@ -40,15 +34,31 @@ public class Gun : MonoBehaviour
         }
     }
 
+    public void OnGunSwitch1(InputAction.CallbackContext context) {
+
+        if (context.performed) {
+            SwitchGunTo1();
+        }
+        
+    }
+    
+    public void OnGunSwitch2(InputAction.CallbackContext context) {
+
+        if (context.performed) {
+            SwitchGunTo2();
+        }
+        
+    }
+
     private void Awake()
     {
         readyToShoot = true;
-        ammoLeft = _magSize;
+        _gunData.ammoLeft = _gunData.magSize;
     }
 
     private void Update()
     {
-        if (isShooting && readyToShoot && !reloading && ammoLeft > 0)
+        if (isShooting && readyToShoot && !reloading && _gunData.ammoLeft > 0)
         {
             PerformShot();
         }
@@ -71,29 +81,29 @@ public class Gun : MonoBehaviour
         muzFlash.Play();
 
         RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, _range))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, _gunData.range))
         {
             Debug.Log(hit.transform.name);
 
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
-                target.TakeDamage(_damage);
+                target.TakeDamage(_gunData.damage);
             }
 
             if (hit.rigidbody)
             {
-                hit.rigidbody.AddForce(-hit.normal * _impactForce); 
+                hit.rigidbody.AddForce(-hit.normal * _gunData.impactForce); 
             }
         }
 
-        ammoLeft--;
+        _gunData.ammoLeft--;
 
-        if (ammoLeft >= 0)
+        if (_gunData.ammoLeft >= 0)
         {
-            Invoke("ResetShot", _fireRate);
+            Invoke("ResetShot", _gunData.fireRate);
 
-            if (!_isAutomatic)
+            if (!_gunData.isAutomatic)
             {
                 EndShot();
             }
@@ -108,13 +118,23 @@ public class Gun : MonoBehaviour
     private void Reload()
     {
         reloading = true;
-        Invoke("ReloadFinish", _reloadTime);
+        Invoke("ReloadFinish", _gunData.reloadTime);
     }
 
     private void ReloadFinish()
     {
-        ammoLeft = _magSize;
+        _gunData.ammoLeft = _gunData.magSize;
         reloading = false;
+    }
+
+    private void SwitchGunTo1() {
+        gun1.SetActive(true);
+        gun2.SetActive(false);
+    }
+    
+    private void SwitchGunTo2() {
+        gun1.SetActive(false);
+        gun2.SetActive(true);
     }
 
 }

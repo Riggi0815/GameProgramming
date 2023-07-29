@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Floater : MonoBehaviour {
+public class PlayerSwim : MonoBehaviour {
 
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private float depthBeforeSubmerged;

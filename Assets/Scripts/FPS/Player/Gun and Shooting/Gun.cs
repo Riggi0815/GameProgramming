@@ -56,7 +56,7 @@ public class Gun : MonoBehaviour {
         _gunData.ammoLeft = _gunData.magSize;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (isShooting && readyToShoot && !reloading && _gunData.ammoLeft > 0)
         {

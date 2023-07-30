@@ -39,7 +39,7 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-    private void Start() {
+    private void Awake() {
         float minHeight = terrainData.minHeight;
         float maxHeight = terrainData.maxHeight;
         

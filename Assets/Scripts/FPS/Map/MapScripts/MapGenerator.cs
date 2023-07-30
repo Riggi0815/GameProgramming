@@ -4,8 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.AI;
 
 public class MapGenerator : MonoBehaviour {
+
+    [SerializeField] private NavMeshSurface surface;
 
     public enum DrawMode {
         NoiseMap,
@@ -50,6 +53,8 @@ public class MapGenerator : MonoBehaviour {
         MapDisplay display = FindObjectOfType<MapDisplay>();
 
         display.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve, editorPrevLOD, terrainData.useFlatShading, gradient, minHeight, maxHeight));
+        
+        surface.BuildNavMesh();
     }
 
     public void DrawMapEditor() {

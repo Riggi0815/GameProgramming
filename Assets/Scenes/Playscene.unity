@@ -1087,7 +1087,7 @@ MonoBehaviour:
     cost: 1
   curWave: 1
   waveValue: 0
-  waveMulti: 7
+  waveMulti: 50
   enemiesToSpawn: []
   minHeight: -0.5
 --- !u!4 &1830645099

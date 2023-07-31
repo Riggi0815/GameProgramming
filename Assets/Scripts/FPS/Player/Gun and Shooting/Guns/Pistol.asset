@@ -19,4 +19,4 @@ MonoBehaviour:
   isAutomatic: 0
   magSize: 16
   reloadTime: 1
-  ammoLeft: 16
+  ammoLeft: 15

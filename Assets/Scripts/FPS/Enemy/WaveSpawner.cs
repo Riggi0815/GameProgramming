@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -58,10 +59,8 @@ public class WaveSpawner : MonoBehaviour {
         enemiesToSpawn = generatedEnemies;
     }
 
-    // Start is called before the first frame update
     public void SpawnEnemy() {
-        while (enemiesToSpawn.Count > 0) {
-
+        for (int i = 0; i < 1; i++) {
             NavMeshAgent agent = enemiesToSpawn[0].GetComponent<NavMeshAgent>();
 
             NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
@@ -70,10 +69,12 @@ public class WaveSpawner : MonoBehaviour {
 
             NavMeshHit hit;
             if (!NavMesh.SamplePosition(triangulation.vertices[vertexIndex], out hit, 2f, -1)) {
+                i = 0;
                 continue;
             }
             
             if (hit.position.y < minHeight) {
+                i = 0;
                 continue;
             }
             
@@ -84,9 +85,20 @@ public class WaveSpawner : MonoBehaviour {
             
             enemiesToSpawn.RemoveAt(0);
 
-        }
+            if (enemiesToSpawn.Count == 0) {
 
-        waveMulti += 2;
+                waveMulti += 2;
+
+            }
+
+            StartCoroutine(TimeBetwenEnemies());
+            
+            
+        }
+    }
+
+    IEnumerator TimeBetwenEnemies() {
+        yield return new WaitForSeconds(.5f);
     }
 
     [System.Serializable]

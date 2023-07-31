@@ -91,14 +91,7 @@ public class WaveSpawner : MonoBehaviour {
 
             }
 
-            StartCoroutine(TimeBetwenEnemies());
-            
-            
         }
-    }
-
-    IEnumerator TimeBetwenEnemies() {
-        yield return new WaitForSeconds(.5f);
     }
 
     [System.Serializable]

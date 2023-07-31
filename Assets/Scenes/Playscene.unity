@@ -1089,7 +1089,7 @@ MonoBehaviour:
   waveValue: 0
   waveMulti: 7
   enemiesToSpawn: []
-  minHeight: 2
+  minHeight: -0.5
 --- !u!4 &1830645099
 Transform:
   m_ObjectHideFlags: 0

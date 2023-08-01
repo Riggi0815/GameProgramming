@@ -30,7 +30,9 @@ public class Gun : MonoBehaviour {
     {
         if (context.performed)
         {
-            Reload();
+            if (_gunData.ammoLeft < _gunData.magSize) {
+                Reload();
+            }
         }
     }
 

@@ -88,7 +88,7 @@ public class Gun : MonoBehaviour {
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
-                target.TakeDamage(_gunData.damage);
+                target.PlayerDamage(_gunData.damage);
             }
 
             if (hit.rigidbody)

@@ -19,5 +19,6 @@ MonoBehaviour:
   isAutomatic: 1
   magSize: 30
   reloadTime: 1.2
-  ammoLeft: 16
+  ammoLeft: 15
   reloadAnimation: RifleReload
+  gunIdle: RifleIdle

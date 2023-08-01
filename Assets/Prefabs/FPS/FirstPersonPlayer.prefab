@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 6235833028332205512}
   - component: {fileID: 6235833028332205511}
   - component: {fileID: 6235833028332205513}
+  - component: {fileID: 5970636809977591096}
   - component: {fileID: 6235833028332205515}
   m_Layer: 0
   m_Name: FirstPersonPlayer
@@ -276,6 +277,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9d5fee21-e776-4286-bc55-4b9b9ae2143c
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7efd62b2-64c9-4753-aa04-9fdceede02ec
+    m_ActionName: Player/Gun1[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1c275e69-4632-4c77-b023-0fff90a68c4a
+    m_ActionName: Player/Gun2[/Keyboard/2]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -299,6 +308,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: -0.36, z: 0}
+--- !u!114 &5970636809977591096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6235833028332205509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d06632f0f009c4a8a8322cdc4e1ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 200
 --- !u!114 &6235833028332205515
 MonoBehaviour:
   m_ObjectHideFlags: 0

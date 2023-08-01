@@ -14,5 +14,7 @@ public class GunData : ScriptableObject {
     public int magSize;
     public float reloadTime;
     public int ammoLeft;
-    
+    public string reloadAnimation;
+    public string gunIdle;
+
 }

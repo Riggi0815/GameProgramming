@@ -118,11 +118,13 @@ public class Gun : MonoBehaviour {
     private void Reload()
     {
         reloading = true;
+        GetComponent<Animator>().Play(_gunData.reloadAnimation);
         Invoke("ReloadFinish", _gunData.reloadTime);
     }
 
     private void ReloadFinish()
     {
+        GetComponent<Animator>().Play(_gunData.gunIdle);
         _gunData.ammoLeft = _gunData.magSize;
         reloading = false;
     }

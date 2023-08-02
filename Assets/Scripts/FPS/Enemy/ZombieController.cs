@@ -10,7 +10,7 @@ public class ZombieController : MonoBehaviour {
     private bool enemyOnGround;
     [SerializeField] private Transform player;
 
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private float attackSpeed;
     private float timeOfLastAttack = 0;
 
@@ -47,8 +47,8 @@ public class ZombieController : MonoBehaviour {
     }
 
     private void DoDamage() {
-        Target target = player.GetComponent<Target>();
-        target.EnemyDamage(damage);
+        PlayerDamage playerDamage = player.GetComponent<PlayerDamage>();
+        playerDamage.TakeDamage(damage);
     }
     
 }

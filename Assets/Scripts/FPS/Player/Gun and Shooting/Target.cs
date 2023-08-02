@@ -1,22 +1,26 @@
+using System;
 using UnityEngine;
 
 public class Target : MonoBehaviour
 {
 
     [SerializeField] private float _health;
+    [SerializeField] private int scorePoints;
+    private int curScore;
+    public Score score;
 
-    public void PlayerDamage(float amount)
+    private void Awake() {
+        score = GameObject.Find("Score").GetComponent<Score>();
+    }
+
+    public void PlayerDamage(float damage)
     {
-        _health -= amount;
+        _health -= damage;
         if (_health <= 0)
         {
             Die();
+            score.SetScore(scorePoints);
         }
-    }
-
-    public void EnemyDamage(float amount) {
-        _health -= amount;
-        Debug.Log(_health);
     }
 
     void Die()

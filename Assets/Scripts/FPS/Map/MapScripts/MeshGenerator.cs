@@ -6,7 +6,7 @@ public static class MeshGenerator {
 
     public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, AnimationCurve _heightCurve, int levelOfDetail, bool useFlatShading, Gradient gradient, float minHeight, float maxHeight) {
 
-        
+        //Generates the Mesh of the Islands
         AnimationCurve heightCurve = new AnimationCurve(_heightCurve.keys);
         
         int width = heightMap.GetLength(0);
@@ -20,6 +20,7 @@ public static class MeshGenerator {
         MeshData meshData = new MeshData(verticesPerLine, verticesPerLine, useFlatShading);
         int vertexIndex = 0;
 
+        //Creates Vertecies and Triangles for the Mesh
         for (int y = 0; y < height; y+= meshSimplify) {
             for (int x = 0; x < width; x+= meshSimplify) {
                     meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier, topLeftZ - y);
@@ -51,6 +52,7 @@ public static class MeshGenerator {
     
 }
 
+//Datas for Mesh Generation
 public class MeshData {
     public Vector3[] vertices;
     public int[] triangles;
@@ -60,6 +62,7 @@ public class MeshData {
     private int triangleIndex;
     private bool useFlatShading;
 
+    //Setting the Variables
     public MeshData(int meshWidth, int meshHeight, bool useFlatShading) {
         this.useFlatShading = useFlatShading;
         
@@ -69,6 +72,7 @@ public class MeshData {
         triangles = new int[(meshWidth - 1) * (meshHeight - 1) * 6];
     }
 
+    //Adding Trangle to the triangles Array
     public void AddTriangle(int a, int b, int c) {
         triangles[triangleIndex] = a;
         triangles[triangleIndex + 1 ] = b;
@@ -76,12 +80,14 @@ public class MeshData {
         triangleIndex += 3;
     }
 
+    //Last Processing
     public void ProcessMesh() {
         if (useFlatShading) {
             Flatshading();
         }
     }
 
+    //Create Flatshading
     void Flatshading() {
         Vector3[] flatShadedVertecies = new Vector3[triangles.Length];
         Vector2[] flatShadedUvs = new Vector2[triangles.Length];
@@ -99,6 +105,7 @@ public class MeshData {
 
     }
 
+    //returns Generated Mesh
     public Mesh CreateMesh() {
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;

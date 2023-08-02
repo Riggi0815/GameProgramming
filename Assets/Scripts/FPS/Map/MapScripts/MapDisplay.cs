@@ -9,12 +9,13 @@ public class MapDisplay : MonoBehaviour {
     [SerializeField] private MeshFilter meshFilter;
     private MeshCollider meshCollider;
 
-    //DrawNoise Map
+    //DrawTexture Map
     public void DrawTexture(Texture2D texture) {
         textureRenderer.sharedMaterial.mainTexture = texture;
         textureRenderer.transform.localScale = new Vector3(texture.width, 1, texture.height);
     }
 
+    //Draws the Mesh for the GameMap
     public void DrawMesh(MeshData meshData) {
         meshFilter.sharedMesh = meshData.CreateMesh();
         meshCollider = mesh.AddComponent<MeshCollider>();

@@ -6,6 +6,7 @@ using UnityEngine;
 public static class FalloffGenerator
 {
 
+    //Generates the Falloff(Islands)
     public static float[,] GenerateFalloffMap(int size, float a, float b) {
         float[,] map = new float[size, size];
 

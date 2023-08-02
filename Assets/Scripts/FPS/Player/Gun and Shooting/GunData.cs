@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu()]
 public class GunData : ScriptableObject {
-
+    //ScriptableObject for Different Guns
     
     public float damage;
     public float range;

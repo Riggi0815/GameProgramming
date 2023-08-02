@@ -10,9 +10,10 @@ public class NoiseData : UpdatableData {
     
     public float noiseScale;
     
-    //Variables for Details
+    //Variables for NoiseDetails
     [Range(1,20)]
-    public int octaves;
+    public int noiseLayers;
+    //persistance and lacunarity for mor details
     [Range(0, 1)]
     public float persistance;
     public float lacunarity;
@@ -26,11 +27,11 @@ public class NoiseData : UpdatableData {
             lacunarity = 1;
         }
 
-        if (octaves < 1) {
-            octaves = 1;
+        if (noiseLayers < 1) {
+            noiseLayers = 1;
         }
-        if (octaves > 30) {
-            octaves = 30;
+        if (noiseLayers > 30) {
+            noiseLayers = 30;
         }
         
         base.OnValidate();

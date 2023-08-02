@@ -4,14 +4,15 @@ using UnityEngine;
 
 public static class Noise {
     //Generate Noise Map
-    //Size, Scale and Details of the Map
 
     public enum NormalizeMode {
         Local,
         Global
     };
+    
     public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset, NormalizeMode normalizeMode) {
         
+        //Generates the different Layers of Noise
         float[,] noiseMap = new float[mapWidth, mapHeight];
 
         System.Random numberGen = new System.Random(seed);

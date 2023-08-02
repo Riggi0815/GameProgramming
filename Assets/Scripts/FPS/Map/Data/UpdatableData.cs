@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UpdatableData : ScriptableObject {
 
+    //Used for Showing in Editor
     public event System.Action OnValuesUpdated;
     public bool autoUpdate;
 

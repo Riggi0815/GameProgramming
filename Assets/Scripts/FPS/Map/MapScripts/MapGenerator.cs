@@ -8,37 +8,46 @@ using UnityEngine.AI;
 
 public class MapGenerator : MonoBehaviour {
 
+    //Variables
+    //ForNavmesh
     [SerializeField] private NavMeshSurface surface;
 
+    //Drawmode (relevant in Editor)
     public enum DrawMode {
         NoiseMap,
         FalloffMap
     }
     [SerializeField] private DrawMode drawMode;
 
+    //ScriptableObjects
     public TerrainData terrainData;
     public NoiseData noiseData;
     
     //Variables for Size
     public const int mapChunkSize = 95;
 
+    //Editor Maps
     [Range(0,6)]
     [SerializeField] private int editorPrevLOD;
 
     public bool autoUpdate;
-
+    
+    //Falloff
     private float[,] falloffMap;
     public float a;
     public float b;
 
+    //Shader
     public Gradient gradient;
 
+    //Generate Map in Editor
     void OnValuesUpdated() {
         if (!Application.isPlaying) {
             DrawMapEditor();
         }
     }
 
+    //Generate NoiseMap, apply on mesh and Draw Mesh
     private void Awake() {
         float minHeight = terrainData.minHeight;
         float maxHeight = terrainData.maxHeight;
@@ -57,6 +66,7 @@ public class MapGenerator : MonoBehaviour {
         surface.BuildNavMesh();
     }
 
+    //Draws FalloffMap and NoiseMap in Editor
     public void DrawMapEditor() {
         
         MapData mapData = GenerateMapData(Vector2.zero);
@@ -69,9 +79,9 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-    //Generate the Noise & Color Map
+    //Generate the Noise Map
     MapData GenerateMapData(Vector2 center) {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, noiseData.seed, noiseData.noiseScale, noiseData.octaves, noiseData.persistance, noiseData.lacunarity, center + noiseData.offset, noiseData.normalizeMode);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, noiseData.seed, noiseData.noiseScale, noiseData.noiseLayers, noiseData.persistance, noiseData.lacunarity, center + noiseData.offset, noiseData.normalizeMode);
         
         for (int y = 0; y < mapChunkSize; y++) {
             for (int x = 0; x < mapChunkSize; x++) {
@@ -84,6 +94,7 @@ public class MapGenerator : MonoBehaviour {
         return new MapData(noiseMap);
     }
 
+    //Validate in Editor
     private void OnValidate() {
 
         if (terrainData != null) {

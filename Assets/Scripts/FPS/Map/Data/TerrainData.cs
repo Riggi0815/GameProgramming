@@ -7,6 +7,7 @@ public class TerrainData : UpdatableData {
     
     public float uniformScale = 1f;
     
+    //Variables for Island Terrain
     public bool useFlatShading;
     public bool useFalloff;
 

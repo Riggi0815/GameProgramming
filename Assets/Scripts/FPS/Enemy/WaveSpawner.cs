@@ -9,21 +9,25 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class WaveSpawner : MonoBehaviour {
+    
+    //Variables
+    //For Waves
     public List<Enemy> enemies = new List<Enemy>();
     public int curWave;
     public int waveValue;
     public int waveMulti;
-
     public List<GameObject> enemiesToSpawn = new List<GameObject>();
-
     private int enemyCount;
     
+    //for Spawning
     [SerializeField] private float minHeight;
 
+    //Generate First Wave
     private void Start() {
         GenerateWave();
     }
 
+    //Spaws Enemys and Generates Waves
     private void FixedUpdate() {
         if (enemiesToSpawn.Count > 0) {
             SpawnEnemy();
@@ -35,18 +39,22 @@ public class WaveSpawner : MonoBehaviour {
 
     }
 
+    //How large is the wave
     public void GenerateWave() {
         waveValue = curWave * waveMulti;
         GenerateEnemies();
     }
 
+    //Generates Enemys
     public void GenerateEnemies() {
         List<GameObject> generatedEnemies = new List<GameObject>();
         while (waveValue > 0) {
 
+            //random because i thought i could add more than one enemy
             int randomEnemyId = Random.Range(0, enemies.Count);
             int randomEnemyCost = enemies[randomEnemyId].cost;
 
+            //Cost would only be relevant with more enemy types
             if (waveValue-randomEnemyCost >= 0) {
                 generatedEnemies.Add(enemies[randomEnemyId].enemyPrefab);
                 waveValue -= randomEnemyCost;
@@ -59,14 +67,15 @@ public class WaveSpawner : MonoBehaviour {
         enemiesToSpawn = generatedEnemies;
     }
 
+    //Spawns Enemies on Navmesh
     public void SpawnEnemy() {
         for (int i = 0; i < 1; i++) {
             NavMeshAgent agent = enemiesToSpawn[0].GetComponent<NavMeshAgent>();
 
+            //Gets Random Point on Navmesh
+            //if point is Valid then Sppawn enemy
             NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
-
             int vertexIndex = Random.Range(0, triangulation.vertices.Length);
-
             NavMeshHit hit;
             if (!NavMesh.SamplePosition(triangulation.vertices[vertexIndex], out hit, 2f, -1)) {
                 i = 0;

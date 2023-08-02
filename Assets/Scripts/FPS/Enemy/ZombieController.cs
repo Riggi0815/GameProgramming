@@ -6,15 +6,17 @@ using UnityEngine.AI;
 
 public class ZombieController : MonoBehaviour {
 
+    //Variables
+    //For Movement
     public NavMeshAgent agent = null;
-    private bool enemyOnGround;
     [SerializeField] private Transform player;
 
+    //For Attacks
     [SerializeField] private int damage;
     [SerializeField] private float attackSpeed;
     private float timeOfLastAttack = 0;
-
-    // Start is called before the first frame update
+    
+    //Gets relevant Components and Objects
     void Awake() {
         
         agent = GetComponent<NavMeshAgent>();
@@ -23,11 +25,13 @@ public class ZombieController : MonoBehaviour {
 
     }
 
+    //Updates the Enemy
     private void FixedUpdate() {
         MoveToTarget();
         RotateToTarget();
     }
 
+    //Moves Enemy towards Player
     private void MoveToTarget() {
         
         agent.SetDestination(player.position);
@@ -42,10 +46,12 @@ public class ZombieController : MonoBehaviour {
 
     }
 
+    //look towards player
     private void RotateToTarget() {
         transform.LookAt(player);
     }
 
+    //DoDamage to Player
     private void DoDamage() {
         PlayerDamage playerDamage = player.GetComponent<PlayerDamage>();
         playerDamage.TakeDamage(damage);

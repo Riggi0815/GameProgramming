@@ -6,6 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(UpdatableData),true)]
 public class UpdateDataEditor : Editor {
 
+    //Only for Editor
     public override void OnInspectorGUI() {
         
         base.OnInspectorGUI();

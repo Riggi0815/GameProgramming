@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDamage : MonoBehaviour {
 
@@ -22,6 +23,14 @@ public class PlayerDamage : MonoBehaviour {
     public void TakeDamage(int amount) {
         curHealth -= amount;
         healthBar.SetHealth(curHealth);
+        if (curHealth == 0) {
+            PlayerDeath();
+        }
+    }
+    
+    //Player Death
+    private void PlayerDeath() {
+        SceneManager.LoadScene("HighscoreScene");
     }
 
 }

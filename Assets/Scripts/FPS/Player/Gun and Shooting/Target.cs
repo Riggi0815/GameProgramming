@@ -7,7 +7,6 @@ public class Target : MonoBehaviour
     //Variables Health and Score
     [SerializeField] private float _health;
     [SerializeField] private int scorePoints;
-    private int curScore;
     public Score score;
 
     //Get the Score Script
@@ -22,7 +21,7 @@ public class Target : MonoBehaviour
         if (_health <= 0)
         {
             Die();
-            score.SetScore(scorePoints);
+            score.AddScore(scorePoints);
         }
     }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class HighScoreTable : MonoBehaviour {
         
         highscoreTemplate.gameObject.SetActive(false);
 
+        AddHighscoreEntry(GetScore());
         //AddHighscoreEntry(10);
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
@@ -76,6 +78,12 @@ public class HighScoreTable : MonoBehaviour {
         string json = JsonUtility.ToJson(highscores);
         PlayerPrefs.SetString("highscoreTable", json);
         PlayerPrefs.Save();
+    }
+
+    public int GetScore() {
+        int reveivedScore = Score.curScore;
+
+        return reveivedScore;
     }
     
     private class Highscores {

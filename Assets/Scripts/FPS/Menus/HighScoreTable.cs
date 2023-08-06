@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HighScoreTable : MonoBehaviour {
@@ -11,6 +12,9 @@ public class HighScoreTable : MonoBehaviour {
     private List<Transform> highscoreEntriesTransforms;
 
     private void Start() {
+
+        Cursor.lockState = CursorLockMode.None;
+        
         //References to Transforms
         highscoreContainer = transform.Find("HighscoreContainer");
         highscoreTemplate = highscoreContainer.Find("HighscoreTemplate");
@@ -33,7 +37,7 @@ public class HighScoreTable : MonoBehaviour {
                 }
             }
         }
-
+        
         if (highscores.highscoreEntries.Count > 10) {
             for (int h = highscores.highscoreEntries.Count; h > 10; h--) {
                 highscores.highscoreEntries.RemoveAt(10);
@@ -82,7 +86,7 @@ public class HighScoreTable : MonoBehaviour {
         
         //Save updated Highscore
         string json = JsonUtility.ToJson(highscores);
-        
+
         PlayerPrefs.SetString("highscoreTable", json);
         PlayerPrefs.Save();
     }
@@ -101,6 +105,10 @@ public class HighScoreTable : MonoBehaviour {
     [System.Serializable]
     private class HighscoreEntry {
         public int score;
+    }
+
+    public void Menu() {
+        SceneManager.LoadScene("MenuScene");
     }
     
 }

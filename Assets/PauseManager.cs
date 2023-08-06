@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PauseManager : MonoBehaviour {
     
-    private bool gameIsPaused = false;
+    public static bool gameIsPaused = false;
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {

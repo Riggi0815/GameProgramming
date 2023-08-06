@@ -40,6 +40,7 @@ public class MouseLook : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         look = context.ReadValue<Vector2>();
+        Debug.Log(look);
     }
     
 }

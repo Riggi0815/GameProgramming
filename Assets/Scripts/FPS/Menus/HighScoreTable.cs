@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +10,7 @@ public class HighScoreTable : MonoBehaviour {
 
     private List<Transform> highscoreEntriesTransforms;
 
-    private void Awake() {
+    private void Start() {
         //References to Transforms
         highscoreContainer = transform.Find("HighscoreContainer");
         highscoreTemplate = highscoreContainer.Find("HighscoreTemplate");
@@ -31,6 +31,12 @@ public class HighScoreTable : MonoBehaviour {
                     highscores.highscoreEntries[i] = highscores.highscoreEntries[j];
                     highscores.highscoreEntries[j] = tmp;
                 }
+            }
+        }
+
+        if (highscores.highscoreEntries.Count > 10) {
+            for (int h = highscores.highscoreEntries.Count; h > 10; h--) {
+                highscores.highscoreEntries.RemoveAt(10);
             }
         }
 
@@ -76,6 +82,7 @@ public class HighScoreTable : MonoBehaviour {
         
         //Save updated Highscore
         string json = JsonUtility.ToJson(highscores);
+        
         PlayerPrefs.SetString("highscoreTable", json);
         PlayerPrefs.Save();
     }

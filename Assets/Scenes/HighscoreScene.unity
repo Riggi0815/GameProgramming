@@ -449,6 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22edd1deac219b2459dfb532f8b526fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filename: random.json
 --- !u!1 &590220720
 GameObject:
   m_ObjectHideFlags: 0

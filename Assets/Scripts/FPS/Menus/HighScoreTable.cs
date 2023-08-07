@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class HighScoreTable : MonoBehaviour {
 
     private Transform highscoreContainer;
     private Transform highscoreTemplate;
+
+    [SerializeField] private string filename;
 
     private List<Transform> highscoreEntriesTransforms;
 
@@ -22,9 +25,9 @@ public class HighScoreTable : MonoBehaviour {
         highscoreTemplate.gameObject.SetActive(false);
 
         AddHighscoreEntry(GetScore());
-        //AddHighscoreEntry(10);
-        string jsonString = PlayerPrefs.GetString("highscoreTable");
-        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+        
+        Highscores highscores = new Highscores();
+        highscores.highscoreEntries = FileHandler.ReadFromJSON<HighscoreEntry>(filename);
         
         //Sorting the Scores
         for (int i = 0; i < highscores.highscoreEntries.Count; i++) {
@@ -78,17 +81,14 @@ public class HighScoreTable : MonoBehaviour {
         HighscoreEntry highscoreEntry = new HighscoreEntry { score = score };
         
         //Load Highscores
-        string jsonString = PlayerPrefs.GetString("highscoreTable");
-        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+        Highscores highscores = new Highscores();
+        highscores.highscoreEntries = FileHandler.ReadFromJSON<HighscoreEntry>(filename);
         
         //Add new Highscore Entry
         highscores.highscoreEntries.Add(highscoreEntry);
         
         //Save updated Highscore
-        string json = JsonUtility.ToJson(highscores);
-
-        PlayerPrefs.SetString("highscoreTable", json);
-        PlayerPrefs.Save();
+        FileHandler.SaveToJSON<HighscoreEntry>(highscores.highscoreEntries, filename);
     }
 
     public int GetScore() {
@@ -98,6 +98,9 @@ public class HighScoreTable : MonoBehaviour {
     }
     
     private class Highscores {
+        public List<HighscoreEntry> highscoreEntries;
+    }
+    private class Highscores2 {
         public List<HighscoreEntry> highscoreEntries;
     }
 

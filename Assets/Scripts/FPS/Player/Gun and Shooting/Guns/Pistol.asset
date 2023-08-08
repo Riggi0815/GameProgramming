@@ -18,8 +18,8 @@ MonoBehaviour:
   impactForce: 20
   isAutomatic: 0
   magSize: 16
-  bulltes: 978
+  bulltes: 999
   reloadTime: 1
-  ammoLeft: 14
+  ammoLeft: 0
   reloadAnimation: PistolAnimation
   gunIdle: PistolIdle

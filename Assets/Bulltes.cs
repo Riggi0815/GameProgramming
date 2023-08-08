@@ -6,25 +6,21 @@ using UnityEngine.UI;
 
 public class Bulltes : MonoBehaviour {
 
-    public static int curBulltesInt;
-    public static int maxBulltesInt;
+    [SerializeField] private GameObject curBulltes;
+    [SerializeField] private GameObject maxBulltes;
+    [SerializeField] private GunData _gunData;
 
-    public GameObject curBulltes;
-    public GameObject maxBulltes;
-
-    private Text curBulltesText;
-    private Text maxBulltesText;
-
-    private void Start() {
-        curBulltesText = curBulltes.GetComponent<Text>();
-        maxBulltesText = maxBulltes.GetComponent<Text>();
-        curBulltesText.text = curBulltesInt.ToString();
-        maxBulltesText.text = maxBulltesInt.ToString();
+    private string curBulltesText;
+    private string maxBulltesText;
+    
+    private void Awake() {
+        curBulltes.GetComponent<Text>().text = _gunData.ammoLeft.ToString();
+        maxBulltes.GetComponent<Text>().text = _gunData.bulltes.ToString();
     }
 
-    private void Update() {
-        curBulltesText.text = curBulltesInt.ToString();
-        maxBulltesText.text = maxBulltesInt.ToString();
+    private void FixedUpdate() {
+        curBulltes.GetComponent<Text>().text = _gunData.ammoLeft.ToString();
+        maxBulltes.GetComponent<Text>().text = _gunData.bulltes.ToString();
     }
 }
 

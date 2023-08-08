@@ -9,6 +9,9 @@ public class Gun : MonoBehaviour {
     [SerializeField] private GunData _gunData;
     [SerializeField] private GameObject gun1;
     [SerializeField] private GameObject gun2;
+    [SerializeField] private GameObject gun1UI;
+    [SerializeField] private GameObject gun2UI;
+    
 
     //bools for Gunhandling
     private bool isShooting, readyToShoot, reloading;
@@ -66,13 +69,11 @@ public class Gun : MonoBehaviour {
     }
 
     //setting bool and fill up the magazine
-    private void Awake()
-    {
+    private void Awake() {
+        
         readyToShoot = true;
         _gunData.ammoLeft = _gunData.magSize;
         _gunData.bulltes = 999;
-        Bulltes.curBulltesInt = _gunData.magSize;
-        Bulltes.maxBulltesInt = _gunData.bulltes;
     }
     
     private void FixedUpdate()
@@ -123,7 +124,6 @@ public class Gun : MonoBehaviour {
         }
         
         _gunData.ammoLeft--;
-        Bulltes.curBulltesInt = _gunData.ammoLeft;
 
         //After every Shot cooldown for firerate
         if (_gunData.ammoLeft >= 0)
@@ -168,23 +168,20 @@ public class Gun : MonoBehaviour {
             _gunData.ammoLeft = _gunData.ammoLeft + _gunData.bulltes;
             _gunData.bulltes = 0;
         }
-        Bulltes.curBulltesInt = _gunData.ammoLeft;
-        Bulltes.maxBulltesInt = _gunData.bulltes;
     }
 
     //Gun Switching
     private void SwitchGunTo1() {
         gun1.SetActive(true);
-        Bulltes.curBulltesInt = _gunData.magSize;
-        Bulltes.maxBulltesInt = _gunData.bulltes;
         gun2.SetActive(false);
+        gun1UI.SetActive(true);
+        gun2UI.SetActive(false);
     }
-    
+
     private void SwitchGunTo2() {
         gun1.SetActive(false);
         gun2.SetActive(true);
-        Bulltes.curBulltesInt = _gunData.magSize;
-        Bulltes.maxBulltesInt = _gunData.bulltes;
+        gun1UI.SetActive(false);
+        gun2UI.SetActive(true);
     }
-
 }

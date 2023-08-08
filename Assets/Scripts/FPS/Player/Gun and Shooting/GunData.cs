@@ -12,6 +12,7 @@ public class GunData : ScriptableObject {
     public float impactForce;
     public bool isAutomatic;
     public int magSize;
+    public int bulltes;
     public float reloadTime;
     public int ammoLeft;
     public string reloadAnimation;

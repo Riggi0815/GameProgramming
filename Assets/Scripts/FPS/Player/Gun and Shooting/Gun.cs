@@ -70,6 +70,9 @@ public class Gun : MonoBehaviour {
     {
         readyToShoot = true;
         _gunData.ammoLeft = _gunData.magSize;
+        _gunData.bulltes = 999;
+        Bulltes.curBulltesInt = _gunData.magSize;
+        Bulltes.maxBulltesInt = _gunData.bulltes;
     }
     
     private void FixedUpdate()
@@ -120,6 +123,7 @@ public class Gun : MonoBehaviour {
         }
         
         _gunData.ammoLeft--;
+        Bulltes.curBulltesInt = _gunData.ammoLeft;
 
         //After every Shot cooldown for firerate
         if (_gunData.ammoLeft >= 0)
@@ -146,25 +150,41 @@ public class Gun : MonoBehaviour {
         reloading = true;
         GetComponent<Animator>().Play(_gunData.reloadAnimation);
         Invoke("ReloadFinish", _gunData.reloadTime);
+        
     }
 
     //reload end
     private void ReloadFinish()
     {
         GetComponent<Animator>().Play(_gunData.gunIdle);
-        _gunData.ammoLeft = _gunData.magSize;
         reloading = false;
+
+        int reloadAmount = _gunData.magSize - _gunData.ammoLeft;
+        if (_gunData.bulltes >= reloadAmount && _gunData.bulltes != 0) {
+            _gunData.ammoLeft = _gunData.magSize;
+            _gunData.bulltes = _gunData.bulltes - reloadAmount;
+        }
+        else {
+            _gunData.ammoLeft = _gunData.ammoLeft + _gunData.bulltes;
+            _gunData.bulltes = 0;
+        }
+        Bulltes.curBulltesInt = _gunData.ammoLeft;
+        Bulltes.maxBulltesInt = _gunData.bulltes;
     }
 
     //Gun Switching
     private void SwitchGunTo1() {
         gun1.SetActive(true);
+        Bulltes.curBulltesInt = _gunData.magSize;
+        Bulltes.maxBulltesInt = _gunData.bulltes;
         gun2.SetActive(false);
     }
     
     private void SwitchGunTo2() {
         gun1.SetActive(false);
         gun2.SetActive(true);
+        Bulltes.curBulltesInt = _gunData.magSize;
+        Bulltes.maxBulltesInt = _gunData.bulltes;
     }
 
 }

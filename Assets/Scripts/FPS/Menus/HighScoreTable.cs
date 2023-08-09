@@ -24,6 +24,7 @@ public class HighScoreTable : MonoBehaviour {
         
         highscoreTemplate.gameObject.SetActive(false);
 
+        
         AddHighscoreEntry(GetScore());
         
         Highscores highscores = new Highscores();

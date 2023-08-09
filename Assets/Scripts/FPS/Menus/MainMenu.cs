@@ -13,10 +13,18 @@ public class MainMenu : MonoBehaviour
 
     }
 
+    //Load Highscore Scene
     public void ShowHighscores() {
 
         SceneManager.LoadScene("HighscoreScene");
 
+    }
+
+    //End Game
+    public void EndGame() {
+        Debug.Log("End App!");
+        //Only working in Build App
+        Application.Quit();
     }
     
 }

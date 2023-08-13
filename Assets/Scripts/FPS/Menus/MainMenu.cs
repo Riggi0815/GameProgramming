@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
-{
+public class MainMenu : MonoBehaviour {
+
+    public static bool wasPlayed = false;
     
     //Start Game
     public void PlayGame() {
 
+        wasPlayed = true;
         SceneManager.LoadScene("Playscene");
 
     }

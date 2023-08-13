@@ -24,8 +24,11 @@ public class HighScoreTable : MonoBehaviour {
         
         highscoreTemplate.gameObject.SetActive(false);
 
+        if (MainMenu.wasPlayed) {
+            AddHighscoreEntry(GetScore());
+            MainMenu.wasPlayed = false;
+        }
         
-        AddHighscoreEntry(GetScore());
         
         Highscores highscores = new Highscores();
         highscores.highscoreEntries = FileHandler.ReadFromJSON<HighscoreEntry>(filename);

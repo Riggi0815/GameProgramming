@@ -6,8 +6,8 @@ using UnityEngine.PlayerLoop;
 public class MouseLook : MonoBehaviour
 {
 
-    [SerializeField] private float mouseSensitivityX;
-    [SerializeField] private float mouseSensitivityY;
+    public static float mouseSensitivityX;
+    public static float mouseSensitivityY;
     [SerializeField] private Transform playerBody;
     
     private Vector2 look;
@@ -18,6 +18,13 @@ public class MouseLook : MonoBehaviour
     {
         playerBody = transform.parent;
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (mouseSensitivityX == 0) {
+            mouseSensitivityX = 3;
+        }
+        if (mouseSensitivityY == 0) {
+            mouseSensitivityY = 3;
+        }
     }
 
     private void Update()

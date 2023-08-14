@@ -48,5 +48,5 @@ public class MouseLook : MonoBehaviour
     {
         look = context.ReadValue<Vector2>();
     }
-    
+
 }

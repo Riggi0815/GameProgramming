@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour {
     
@@ -41,4 +42,11 @@ public class PauseManager : MonoBehaviour {
         optionsOverlay.SetActive(false);
     }
     
+    public void GoHome() {
+        MainMenu.wasPlayed = false;
+        SceneManager.LoadScene("Menuscene");
+        Time.timeScale = 1;
+        gameIsPaused = false;
+        Cursor.lockState = CursorLockMode.None;
+    }
 }

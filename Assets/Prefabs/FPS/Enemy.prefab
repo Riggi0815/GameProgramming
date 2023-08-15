@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3490081355632216855}
   - component: {fileID: 2760927757695916791}
   - component: {fileID: 3299519816539401687}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,8 @@ GameObject:
   - component: {fileID: 9191239267111567314}
   - component: {fileID: 9191239267111567317}
   - component: {fileID: 6975436184642698966}
-  m_Layer: 0
+  - component: {fileID: 3114032652932274421}
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9191239267111567321}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.333336, y: 2.9067783, z: -75.5}
+  m_LocalPosition: {x: 10.5, y: 4.7401104, z: -9.833332}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -219,6 +220,21 @@ MonoBehaviour:
   _health: 200
   scorePoints: 100
   score: {fileID: 0}
+--- !u!114 &3114032652932274421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9191239267111567321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0cae24fbaffd4346a0933db3d94d55e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 9180373262876744066, guid: a9469c3b2b07b0441a2a55a65abebc78, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: df77666d8216e0448ab1b029048e6153, type: 2}
 --- !u!1 &9191239268735592763
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9191239268735592760}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyGroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +277,7 @@ GameObject:
   - component: {fileID: 9191239269067162096}
   - component: {fileID: 9191239269067162094}
   - component: {fileID: 9191239269067162097}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -28,6 +28,7 @@ public class Target : MonoBehaviour
     //Destroy when Death
     void Die()
     {
+        GetComponent<LootBag>().InstantiateLoot(transform.position);
         Destroy(gameObject);
     }
 

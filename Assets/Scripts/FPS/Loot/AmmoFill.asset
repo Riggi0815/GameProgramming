@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d231b67688ceef34aa1cd1f77c58cbce, type: 3}
   m_Name: AmmoFill
   m_EditorClassIdentifier: 
-  lootObject: {fileID: 8302903135548501799, guid: 04daf002a689e724d9618fd2fb58ef26, type: 3}
   lootName: AmmoFill
   dropChance: 1

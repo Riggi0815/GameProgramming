@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -129,7 +130,7 @@ public class Gun : MonoBehaviour {
         if (_gunData.ammoLeft >= 0)
         {
             Invoke("ResetShot", _gunData.fireRate);
-
+            
             //no automatic Gun then stop
             if (!_gunData.isAutomatic)
             {
@@ -137,6 +138,7 @@ public class Gun : MonoBehaviour {
             }
         }
     }
+    
 
     //For FireRate
     private void ResetShot()

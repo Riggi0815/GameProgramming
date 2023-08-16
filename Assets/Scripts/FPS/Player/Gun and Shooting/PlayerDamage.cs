@@ -11,7 +11,7 @@ public class PlayerDamage : MonoBehaviour {
     private int curHealth;
 
     //Reference to the HealthBar
-    public HealthBar healthBar;
+    [SerializeField] private HealthBar healthBar;
 
     //on Start MaxHealth get assigned to curHealth
     private void Start() {

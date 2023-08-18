@@ -8,6 +8,7 @@ public class LootBag : MonoBehaviour {
     public GameObject droppedItemPrefab;
     public List<Loot> lootList = new List<Loot>();
 
+    //Get Dropchance and get Random drop Item
     private Loot GetDroppedItem() {
 
         int randNumber = Random.Range(1, 101); //Number Betwen 1 - 100 (0 excluded and 100 included)
@@ -22,10 +23,10 @@ public class LootBag : MonoBehaviour {
             Loot droppedItem = possibleItems[Random.Range(0, possibleItems.Count)];
             return droppedItem;
         }
-        Debug.Log("kein Drop");
         return null;
     }
 
+    //Loot Item Spawnen
     public void InstantiateLoot(Vector3 spawnPos) {
         Loot droppedItem = GetDroppedItem();
         if (droppedItem != null) {

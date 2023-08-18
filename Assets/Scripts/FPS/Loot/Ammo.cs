@@ -8,6 +8,7 @@ public class Ammo : MonoBehaviour {
     public GunData rifleGunData;
     public GunData pistolGunData;
     
+    //When Collided then refill ammo
     private void OnTriggerEnter(Collider other) {
 
         rifleGunData.bulltes = 999;

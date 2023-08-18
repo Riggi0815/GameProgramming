@@ -24,12 +24,13 @@ public class HighScoreTable : MonoBehaviour {
         
         highscoreTemplate.gameObject.SetActive(false);
 
+        //If Game was Played then Create new Entry
         if (MainMenu.wasPlayed) {
             AddHighscoreEntry(GetScore());
             MainMenu.wasPlayed = false;
         }
         
-        
+        //Load the Highscores
         Highscores highscores = new Highscores();
         highscores.highscoreEntries = FileHandler.ReadFromJSON<HighscoreEntry>(filename);
         
@@ -45,18 +46,21 @@ public class HighScoreTable : MonoBehaviour {
             }
         }
         
+        //Display only 10 Scores
         if (highscores.highscoreEntries.Count > 10) {
             for (int h = highscores.highscoreEntries.Count; h > 10; h--) {
                 highscores.highscoreEntries.RemoveAt(10);
             }
         }
 
+        //Creates Transforms
         highscoreEntriesTransforms = new List<Transform>();
         foreach (HighscoreEntry highscoreEntry in highscores.highscoreEntries) {
             CreateHighscoreEntryTransform(highscoreEntry, highscoreContainer, highscoreEntriesTransforms);
         }
     }
 
+    //Creates the Entrys
     private void CreateHighscoreEntryTransform(HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList) {
         float templateHeight = 50f;
         
@@ -65,6 +69,7 @@ public class HighScoreTable : MonoBehaviour {
         highscoreRectTransform.anchoredPosition = new Vector2(0, -templateHeight * transformList.Count);
         highscoreTransform.gameObject.SetActive(true);
 
+        //Rank 1 - 10
         int rank = transformList.Count + 1;
         string rankString;
         switch (rank) {
@@ -73,6 +78,7 @@ public class HighScoreTable : MonoBehaviour {
         }
         highscoreTransform.Find("RankText").GetComponent<Text>().text = rankString;
 
+        //Score 
         var score = highscoreEntry.score;
         highscoreTransform.Find("ScoreText").GetComponent<Text>().text = score.ToString();
         
@@ -95,6 +101,7 @@ public class HighScoreTable : MonoBehaviour {
         FileHandler.SaveToJSON<HighscoreEntry>(highscores.highscoreEntries, filename);
     }
 
+    //Get Score from Run
     public int GetScore() {
         int reveivedScore = Score.curScore;
 
@@ -104,9 +111,6 @@ public class HighScoreTable : MonoBehaviour {
     private class Highscores {
         public List<HighscoreEntry> highscoreEntries;
     }
-    private class Highscores2 {
-        public List<HighscoreEntry> highscoreEntries;
-    }
 
     //One Highscore Entry
     [System.Serializable]
@@ -114,6 +118,7 @@ public class HighScoreTable : MonoBehaviour {
         public int score;
     }
 
+    //Button to get back to menu
     public void Menu() {
         SceneManager.LoadScene("MenuScene");
     }

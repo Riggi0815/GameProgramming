@@ -82,11 +82,13 @@ public class WaveSpawner : MonoBehaviour {
                 continue;
             }
             
+            //Check min Spawn Height
             if (hit.position.y < minHeight) {
                 i = 0;
                 continue;
             }
             
+            //Spawning Enemy
             agent.Warp(hit.position);
             agent.enabled = true;
             var obj =Instantiate(enemiesToSpawn[0], hit.position, Quaternion.identity);

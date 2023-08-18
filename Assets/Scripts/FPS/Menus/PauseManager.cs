@@ -8,6 +8,7 @@ public class PauseManager : MonoBehaviour {
     public GameObject pauseOverlay;
     public GameObject optionsOverlay;
 
+    //On ESC PAuse or Resume Game
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (gameIsPaused) {
@@ -22,6 +23,7 @@ public class PauseManager : MonoBehaviour {
         }
     }
 
+    //Starts the Game agarin
     public void ResumeGame() {
         
         Time.timeScale = 1;
@@ -30,6 +32,7 @@ public class PauseManager : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
     }
     
+    //Pauses the Game
     public void GamePause() {
         Time.timeScale = 0;
         gameIsPaused = true;
@@ -37,11 +40,13 @@ public class PauseManager : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
     }
 
+    //Opens Pause Menu
     public void PauseMenu() {
         pauseOverlay.SetActive(true);
         optionsOverlay.SetActive(false);
     }
     
+    //Opens Main Menu again
     public void GoHome() {
         MainMenu.wasPlayed = false;
         SceneManager.LoadScene("Menuscene");

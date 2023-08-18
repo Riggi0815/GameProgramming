@@ -24,7 +24,6 @@ public class MainMenu : MonoBehaviour {
 
     //End Game
     public void EndGame() {
-        Debug.Log("End App!");
         //Only working in Build App
         Application.Quit();
     }

@@ -8,12 +8,13 @@ using System.Linq;
 public static class FileHandler
 {
 
+    //Save Data to JSON File
     public static void SaveToJSON<T>(List<T> toSave, string filename) {
-        Debug.Log(GetPath(filename));
         string content = JsonHelper.ToJson<T>(toSave.ToArray());
         WriteFile(GetPath(filename), content);
     }
     
+    //Read Data Form JSON
     public static List<T> ReadFromJSON<T>(string filename) {
         string content = ReadFile(GetPath(filename));
         if (string.IsNullOrEmpty(content) || content == "{}") {
@@ -25,10 +26,12 @@ public static class FileHandler
         return res;
     }
 
+    //Get File Location
     private static string GetPath(string filename) {
         return Application.persistentDataPath + "/" + filename;
     }
 
+    //Write Data in File
     private static void WriteFile(string path, string content) {
         FileStream fileStream = new FileStream(path, FileMode.Create);
 
@@ -37,6 +40,7 @@ public static class FileHandler
         }
     }
 
+    //Get Data From File
     private static string ReadFile(string path) {
         if (File.Exists(path)) {
             using (StreamReader reader = new StreamReader(path)) {
@@ -49,6 +53,7 @@ public static class FileHandler
     }
 }
 
+//Code Snippet: Stack Overflow
 public static class JsonHelper
 {
     public static T[] FromJson<T>(string json)
